@@ -1,6 +1,16 @@
 # CameraPi
-얼굴인식 카메라를 사용하는 RPi 관련 부분
+얼굴인식 카메라를 사용하는 RPi 관련 부분 / 웹캠, 라즈베리파이3, UV4L에 대해 다룹니다.
 
+```mermaid
+graph LR
+A(웹캠)-->B[라즈베리3]
+B-->|UV4L| C[서버]
+C-->D{권한요청}
+D-->|X| C
+D-->|O| E(opencv)
+
+```
+  
 ## 참고자료
 ### UV4L를 이용한 실시간 스트리밍 (Pi Cam)
 1 : https://code-developer.tistory.com/56  
@@ -9,3 +19,6 @@
   
 ### UV4L를 이용한 실시간 스트리밍 (Web Cam)
 1 : 라즈베리파이 웹캠 인식 fswebcam avconv : https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=audiendo&logNo=220799711999  
+
+### 라즈베리파이 OpenCV를 이용 얼굴인식과 동작캡처로 구글 어시스턴트 동작하기
+https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=cosmosjs&logNo=221344080130
