@@ -292,6 +292,7 @@ ioctl: VIDIOC_ENUM_FMT
 ```
 ### 사용전 설정
 bash쉘에서 `sudo raspi-config`를 입력하여 설정화면으로 접속합니다. 이후 `interface config`에서 `camera` 옵션을 enable 시켜주면 됩니다.  
+또한 그래픽처리가 지속적으로 필요하므로 `advanced` 에서 `memory split`을 256MB 이상으로 설정해줍니다.
 
 ### 간단한 동작테스트 (카메라 정상여부 확인)
 fswebcam 명령어를 이용하여 웹캠으로 간단한 사진캡처가 가능합니다. 해당 명령어에 사용된 옵션은 1280x960의 해상도`-r 1280*960` 으로 사진하단에 시간이 찍히지 않게`--no-banner` 캡처하여 `image2.jpg` 경로에 저장하라는 뜻입니다.
@@ -331,7 +332,7 @@ uv4l --external-driver --device-name=video0
 # 참고자료
 
 ### UV4L를 이용한 실시간 스트리밍 (Pi Cam)
-UV4L 공식문서 : https://www.linux-projects.org/uv4l/tutorials/
+UV4L 설치 공식문서 : https://www.linux-projects.org/uv4l/installation/ , https://github.com/TJiiii/pipycctv
 1 : https://code-developer.tistory.com/56  
 2 : https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&blogId=rhrkdfus&logNo=221405053557  
 3 : https://emptybox031.tistory.com/entry/%EB%9D%BC%EC%A6%88%EB%B2%A0%EB%A6%AC%ED%8C%8C%EC%9D%B43%EA%B3%BC-UV4L%EB%A1%9C-%EA%B5%AC%ED%98%84%ED%95%98%EB%8A%94-%EB%B9%84%EB%94%94%EC%98%A4-%EC%8A%A4%ED%8A%B8%EB%A6%AC%EB%B0%8D2-UV4L-%EC%84%A4%EC%B9%98%EB%B0%8F-%EC%84%A4%EC%A0%95  
