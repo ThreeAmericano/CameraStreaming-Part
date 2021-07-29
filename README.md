@@ -362,6 +362,10 @@ webRTC 패키지를 설치하였기 때문에 HTTP 프로토콜을 통하여 실
  
 # 참고자료
 
+### Linux Opencv 설치
+공식Build : https://docs.opencv.org/4.5.2/d7/d9f/tutorial_linux_install.html
+파이썬-PreBuild : https://softtone-someday.tistory.com/8
+
 ### UV4L를 이용한 실시간 스트리밍 (Pi Cam)
 UV4L 설치 공식문서 : https://www.linux-projects.org/uv4l/installation/ , https://github.com/TJiiii/pipycctv
 1 : https://code-developer.tistory.com/56  
