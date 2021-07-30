@@ -12,8 +12,9 @@ C-->D{권한요청}
 D-->|X| C
 D-->|O| E(opencv)
 ```
-  
-  
+
+
+
 ##  ✅ TODO
 
 ✅ 라즈베리파이3 OS 설치 및 기본설정
@@ -26,12 +27,15 @@ D-->|O| E(opencv)
 
 ✅ UV4L to openCV 외부 레벨 테스트 (서버측에서 정상적으로 사진을 받아올 수 있는지)
 
+⬜ 서버에서 IP 값 참조시에 대한 부분 (장소가 바뀔시 IP가 바뀌는데 DNS를 사용?)
+
 ⬜ 아두이노 : 조도센서값이 낮을때, LED 점등
+
  
- 
- 
+
 # 웹캠 연결 테스트
 ### USB 웹캠 연결 확인
+
 bash쉘에서 lsusb 명령어를 입력하여 정상적으로 장치가 연결되었는지 확인합니다.
 ```console
 pi@raspi3-ecb:~ $ lsusb
@@ -41,7 +45,10 @@ Bus 001 Device 002: ID 0424:9514 Standard Microsystems Corp. SMC9514 Hub
 Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
 ```
 
+
+
 ### 웹캠 사양 확인
+
 bash쉘에서 v4l2-ctl --list-format-ext 명령어를 사용하여 해당 웹캠의 사양을 확인할 수 있습니다.
 ```console
 pi@raspi3-ecb:~ $ v4l2-ctl --list-formats-ext
@@ -292,7 +299,7 @@ ioctl: VIDIOC_ENUM_FMT
                         Interval: Discrete 0.100s (10.000 fps)
                         Interval: Discrete 0.200s (5.000 fps)
 ```
-  
+
 ### 사용전 설정
 bash쉘에서 `sudo raspi-config`를 입력하여 설정화면으로 접속합니다. 이후 `interface config`에서 `camera` 옵션을 enable 시켜주면 됩니다.  
 또한 그래픽처리가 지속적으로 필요하므로 `advanced` 에서 `memory split`을 256MB 이상으로 설정해줍니다.
@@ -313,13 +320,16 @@ Disabling banner.
 Writing JPEG image to 'image2.jpg'.
 ```
 
+
+
 # UV4L 설치
+
 UV4L 라이브러리를 다운받기 위하여 먼저 저장소 정보를 `/etc/apt/sources.list`에 아래와 같이 추가합니다.
 ```console
 $ sudo vi /etc/apt/sources.list
 deb http://www.linux-projects.org/listing/uv4l_repo/raspbian/stretch stretch     main
 ```
-  
+
 이후 패키지관련 정보를 업데이트해준뒤에, UV4L 패키지를 설치합니다. 대표적으로 `uv4l`, `uv4l-server`, `uv4l-uvc`, `uv4l-webrtc`를 설치합니다.
 ```console
 $ sudo apt-get update
@@ -340,7 +350,10 @@ ii  uv4l-xscreen                          1.6                                arm
 =======================================================
 ```
 
+
+
 ### UV4L 실행
+
 아래 명렁어를 통해 uv4l을 시작합니다. 또는 아래 명령어가 부팅시 백그라운드에서 자동실행됩니다.
 ```console
 $ uv4l --external-driver --device-name=video0
@@ -348,16 +361,24 @@ or
 $ /usr/bin/uv4l -k --sched-rr --mem-lock --config-file=/etc/uv4l/uv4l-uvc.conf --driver uvc --driver-config-file=/etc/uv4l/uv4l-uvc.conf --server-option=--editable-config-file=/etc/uv4l/uv4l-uvc.conf --device-id 046d:081b
 ```
 
+
+
 ### UV4L 스트리밍 확인 (WebPage)
+
 webRTC 패키지를 설치하였기 때문에 HTTP 프로토콜을 통하여 실시간-스트리밍 영상을 확인할 수 있습니다.
 브라우저에서 `http://<IP>:<PORT>/stream`에 접속하여 바로 확인 가능합니다. 또는 `http://<IP>:<PORT>/`에 접속하여 각 메뉴를 확인할 수 있습니다.
-<메뉴 사진>
+![](./readme_file/img/uv4l_web_menu.png)
+
+
 
 ### UV4L 스트리밍 확인 예시
-<사진>
+
+아래 사진과 같이 실시간으로 웹캠 영상이 WEB으로 스트리밍 됩니다.
+
+![](./readme_file/img/uv4l_web_streaming.png)
 
  
- 
+
 # 참고자료
 
 ### Linux Opencv 설치
