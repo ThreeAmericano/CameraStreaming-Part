@@ -16,6 +16,17 @@ D-->|O| E(opencv)
 
 
 
+## 📄 Tech Spec
+
+- VPN : openVPN
+
+- VPN IP : 10.8.0.2
+- UV4L Streaming WEB Port : 8090
+- AMQP 0-9-1 Protocol (RabbitMQ Server, Pika)
+- UV4L WEB Streaming
+
+  
+
 ##  ✅ TODO
 
 ✅ 라즈베리파이3 OS 설치 및 기본설정
@@ -32,7 +43,13 @@ D-->|O| E(opencv)
 
 ✅ 얼굴인식 진행중인경우(AMQP 메세지를 통해 판단), 조도센서값이 낮은 경우 LED 점등 (운전중일때는 동작 X)
 
- 
+⬜ 부팅시 자동으로 VPN에 연결하고 관리하는 프로그램 작성
+
+⬜ 부팅시 자동으로 UV4L Streaming을 진행하고 관리하는 프로그램 작성
+
+⬜ 부팅시 자동으로 AMQP(RabbitMQ)에 접속하여 메세지를 불러오는 프로그램 작성
+
+   
 
 # 웹캠 연결 테스트
 ### USB 웹캠 연결 확인
