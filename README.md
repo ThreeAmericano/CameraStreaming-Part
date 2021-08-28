@@ -19,8 +19,7 @@ D-->|O| E(opencv)
 ## 📄 Tech Spec
 
 - VPN : openVPN
-
-- VPN IP : 10.8.0.2
+- VPN IP : 10.8.0.2 (External 51820 UDP)
 - UV4L Streaming WEB Port : 8090
 - AMQP 0-9-1 Protocol (RabbitMQ Server, Pika)
 - UV4L WEB Streaming
