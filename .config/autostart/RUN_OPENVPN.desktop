@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name=RUN_OPENVPN
+Exec=lxterminal -e sudo /home/pi/camera_client/vpn/openvpn_start.sh
+#Exec=lxterminal -e sudo openvpn --config /home/pi/camera_client/vpn/camera.ovpn --askpass /home    /pi/camera_client/vpn/auth.txt
+Type=Application

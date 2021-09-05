@@ -1,7 +1,7 @@
 #####################################################
 #
 # Camera Client Program
-# 2021-08-27
+# 2021-09-05
 #
 #####################################################
 from module import rabbitmq_clinet as rbc
@@ -11,6 +11,7 @@ import json
 import threading
 
 FLAG_RUN_LIGHT = False
+LIGHT_TIME_LIMIT = 180
 PIN_LIGHT = 2
 PIN_LUX = 3
 
@@ -18,7 +19,8 @@ print("[init] GPIO Table")
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(PIN_LIGHT, GPIO.OUT)
 GPIO.setup(PIN_LUX, GPIO.IN)
-
+time.sleep(0.1)
+GPIO.output(PIN_LIGHT, GPIO.LOW)
 
 # AMQP 메세지 콜백함수 지정
 def callback(ch, method, properties, body):
@@ -45,6 +47,14 @@ def callback(ch, method, properties, body):
     except Exception as e:
         print("not good json form")
         return False
+
+    if json_data['Producer'] != 'server':
+        print("not good Producer : %r" % json_data['Producer'])
+        return False
+    if json_data['command'] != 'facer_sign':
+        print("not good command : %r" % json_data['command'])
+        return False
+
     print(light_onoff_sign)
 
     # 얼굴인식 진행/종료 신호에 따른 동작
@@ -58,6 +68,9 @@ def callback(ch, method, properties, body):
 
 def gpio_control():
     global FLAG_RUN_LIGHT
+    before_time = time.time()
+    now_time = time.time() 
+
     while True:
         if FLAG_RUN_LIGHT:
             # 얼굴인식 진행/종료 신호에 따른 동작
@@ -71,6 +84,14 @@ def gpio_control():
                     time.sleep(0.2)	
             except Exception as e:
                 print("gpio error!! %r" % e)
+        else:
+            before_time = time.time()
+            GPIO.output(PIN_LIGHT, GPIO.LOW)
+
+        # 제한시간 초과시 동작을 강제로 OFF (인터넷 연결이상 등 장애가 있는 것으로 판단)
+        now_time = time.time()
+        if (now_time - before_time) > LIGHT_TIME_LIMIT:
+            FLAG_RUN_LIGHT = False
 
 
 # GPIO control Thread 실행
@@ -84,7 +105,9 @@ rb = rbc.RabbitmqClient('211.179.42.130', 5672, 'rabbit', 'MQ321')
 conn = rb.connect_server()
 
 camera_channel = rbc.RabbitmqChannel(conn)
+time.sleep(0.5)
 camera_channel.open_channel()
+time.sleep(0.5)
 camera_channel.publish_exchange('webos.topic', 'webos.test.info', '{nice}')
 camera_channel.consume_setting('webos.camera', callback)
 

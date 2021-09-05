@@ -1,0 +1,4 @@
+[Desktop Entry]
+Name=CAMERA_CLIENT
+Exec=lxterminal -e sudo python3 /home/pi/camera_client/camera_client.py
+Type=Application
