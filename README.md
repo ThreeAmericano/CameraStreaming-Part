@@ -26,13 +26,25 @@ D-->|O| E(opencv)
 
 
 
-
 ## 📁Tree
 
 ```
-📁 < 구조를 넣으세요 ㅋㅋ >
-┗ 📄 이잉
-📁
+📁 CameraClient
+┗ 📄 camera_client.py
+┗ 📁 module
+  ┗ 📄 rabbitmq_client.py
+┗ 📁 uv4l
+  ┗ 📄 run_uv4l.sh
+  ┗ 📄 uv4l-uvc.conf
+┗ 📁 vpn
+  ┗ 📄 auth.txt
+  ┗ 📄 camera.ovpn
+  ┗ 📄 openvpn_start.sh
+
+📁 .config
+┗ 📁 autostart
+  ┗ 📄 RUN_OPENVPN.desktop
+  ┗ 📄 CAMERA_MQTT_CLIENT.desktop
 ```
 
 
