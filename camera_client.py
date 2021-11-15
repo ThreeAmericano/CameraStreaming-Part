@@ -101,7 +101,7 @@ time.sleep(0.5)
 
 # RabbitMQ 연결
 print("[init] RabbitMQ Connection")
-rb = rbc.RabbitmqClient('211.179.42.130', 5672, 'rabbit', 'MQ321')
+rb = rbc.RabbitmqClient('<<SERVER IP>>', 5672, 'rabbit', 'MQ321')
 conn = rb.connect_server()
 
 camera_channel = rbc.RabbitmqChannel(conn)
